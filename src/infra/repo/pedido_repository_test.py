@@ -22,7 +22,7 @@ def test_pedido_repository():
     engine = db_connection_handler.get_engine()
 
     pedido_repository.insert_pedido(pedido_id, status)
-    pedido = engine.execute(f'SELECT * FROM pedidos WHERE id = {pedido_id}').fetchone()
+    pedido = engine.execute(f'SELECT * FROM pedidos WHERE id = {pedido_id}').first()
     
     engine.execute(f'DELETE FROM pedidos WHERE id = {pedido_id}')
     

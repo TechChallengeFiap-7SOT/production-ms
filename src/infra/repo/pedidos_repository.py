@@ -1,11 +1,11 @@
 from typing import List
-from src.domain.models import Pedidos
 
+from src.domain.models import Pedidos
+from src.data.interfaces import PedidoRepositoryInterface
 from src.infra.config import DBConnectionHandler
 from src.infra.entities import Pedidos as PedidosModel
 
-class PedidosRepository:
-    
+class PedidosRepository(PedidoRepositoryInterface):
     @classmethod
     def insert_pedido(cls, id: int, status: int) -> Pedidos:
         with DBConnectionHandler() as db_connection:
