@@ -50,3 +50,25 @@ def test_get_pedidos():
     assert data in query_pedido_id
     assert data in query_pedido_status
     assert data in query_pedido
+
+
+def test_update_pedido():
+    pedido_id = random.randint(0, 9999)
+    status = random.randint(1, 4)
+    status = PEDIDO_STATUS[status]
+    new_status = random.randint(1, 4)
+    new_status = PEDIDO_STATUS[new_status]
+
+    engine = db_connection_handler.get_engine()
+    engine.execute(
+        f'INSERT INTO pedidos VALUES({pedido_id}, "{status}")'
+    )
+    
+    pedido_repository.update_pedido(pedido_id=pedido_id, status=new_status)
+    
+    pedido = engine.execute(f'SELECT * FROM pedidos WHERE id = {pedido_id}').first()
+    
+    assert pedido.id == pedido_id
+    assert pedido.status == new_status
+    
+    engine.execute(f'DELETE FROM pedidos WHERE id = {pedido_id}')

@@ -7,10 +7,10 @@ from src.infra.entities import Pedidos as PedidosModel
 
 class PedidosRepository(PedidoRepositoryInterface):
     @classmethod
-    def insert_pedido(cls, id: int, status: int) -> Pedidos:
+    def insert_pedido(cls, pedido_id: int, status: int) -> Pedidos:
         with DBConnectionHandler() as db_connection:
             try:
-                pedido = PedidosModel(id=id, status=status)
+                pedido = PedidosModel(id=pedido_id, status=status)
                 db_connection.session.add(pedido)
                 db_connection.session.commit()
                 
@@ -20,6 +20,8 @@ class PedidosRepository(PedidoRepositoryInterface):
                 raise
             finally:
                 db_connection.session.close()
+            
+        return None
 
     @classmethod
     def get_pedidos(cls, pedido_id: int = None, status: str = None) -> List[Pedidos]:
@@ -37,4 +39,20 @@ class PedidosRepository(PedidoRepositoryInterface):
             raise
         finally:
             db_connection.session.close()
-        
+            
+    @classmethod
+    def update_pedido(cls, pedido_id: int, status: str) -> Pedidos:
+        with DBConnectionHandler() as db_connection:
+            try:
+                pedido = db_connection.session.query(PedidosModel).filter_by(id=pedido_id).first()
+                pedido.status = status
+                db_connection.session.commit()
+                
+                return Pedidos(id=id, status=status)
+            except:
+                db_connection.session.rollback()
+                raise
+            finally:
+                db_connection.session.close()
+            
+        return None
