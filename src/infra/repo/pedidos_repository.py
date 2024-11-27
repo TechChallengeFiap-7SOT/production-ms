@@ -32,7 +32,7 @@ class PedidosRepository(PedidoRepositoryInterface):
                     query_data = query_data.filter_by(id=pedido_id)
 
                 if status:
-                    query_data = query_data.filter_by(status=status)
+                    query_data = query_data.filter(PedidosModel.status.in_(status))
                 
                 return query_data.all()
         except:
