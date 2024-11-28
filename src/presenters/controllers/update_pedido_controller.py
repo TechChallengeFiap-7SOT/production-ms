@@ -1,10 +1,12 @@
 from typing import Type
+
+from src.main.interface import RouterInteface
 from src.domain.use_cases import UpdatePedidos
 from src.presenters.helpers import HttpRequest, HttpResponse
 from src.presenters.errors.http_erros import HttpErros
 
 
-class UpdatePedidoController:
+class UpdatePedidoController(RouterInteface):
     def __init__(self, update_pedido_use_case: Type[UpdatePedidos]):
         self.update_pedido_use_case = update_pedido_use_case
         

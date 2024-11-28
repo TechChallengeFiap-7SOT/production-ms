@@ -14,7 +14,7 @@ class PedidosRepository(PedidoRepositoryInterface):
                 db_connection.session.add(pedido)
                 db_connection.session.commit()
                 
-                return Pedidos(id=id, status=status)
+                return Pedidos(id=pedido_id, status=status)
             except:
                 db_connection.session.rollback()
                 raise
@@ -33,8 +33,12 @@ class PedidosRepository(PedidoRepositoryInterface):
 
                 if status:
                     query_data = query_data.filter(PedidosModel.status.in_(status))
+                    
+                response = []
+                for item in query_data.all():
+                    response.append(Pedidos(id=item.id, status=item.status._name_))
                 
-                return query_data.all()
+                return response
         except:
             raise
         finally:
@@ -48,7 +52,7 @@ class PedidosRepository(PedidoRepositoryInterface):
                 pedido.status = status
                 db_connection.session.commit()
                 
-                return Pedidos(id=id, status=status)
+                return Pedidos(id=pedido_id, status=status)
             except:
                 db_connection.session.rollback()
                 raise

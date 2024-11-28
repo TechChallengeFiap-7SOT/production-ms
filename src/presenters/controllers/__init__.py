@@ -1,2 +1,3 @@
 from .find_pedido_controller import FindPedidosController
 from .register_pedidos import RegisterPedidosController
+from .update_pedido_controller import UpdatePedidoController
