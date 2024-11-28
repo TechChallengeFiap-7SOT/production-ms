@@ -23,6 +23,6 @@ class Pedidos(Base):
         return f'Pedido: {self.id} - Status: {self.status}'
 
     def __eq__(self, other):
-        if self.id == other.id and self.status._name_ == other.status:
+        if self.id == other.id and self.status == other.status:
             return True
         return False

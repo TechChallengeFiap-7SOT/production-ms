@@ -7,11 +7,11 @@ def test_handler():
     find_pedido_use_case = FindPedidoSpy()
     find_pedido_controller = FindPedidosController(find_pedido_use_case)
     
-    http_request = HttpRequest(query={'status': 'na_fila'})
+    http_request = HttpRequest(body={'status': ['na_fila']})
     
     response = find_pedido_controller.handle(http_request)
 
-    assert find_pedido_use_case.find_pedidos_params['status'] == 'na_fila'
+    assert find_pedido_use_case.find_pedidos_params['status'] == ['na_fila']
     assert response.status_code == 200
     assert response.body
 
@@ -31,7 +31,7 @@ def test_handler_no_status_error():
     find_pedido_use_case = FindPedidoSpy()
     find_pedido_controller = FindPedidosController(find_pedido_use_case)
     
-    http_request = HttpRequest(query={'wrong_status': 'na_fila'})
+    http_request = HttpRequest(body={'wrong_status': 'na_fila'})
     
     response = find_pedido_controller.handle(http_request)
 
