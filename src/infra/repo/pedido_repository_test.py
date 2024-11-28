@@ -46,7 +46,7 @@ def test_get_pedidos():
     query_pedido_id = pedido_repository.get_pedidos(pedido_id=pedido_id)
     query_pedido_status = pedido_repository.get_pedidos(status=[status])
     query_pedido = pedido_repository.get_pedidos(pedido_id=pedido_id, status=[status])
-    
+
     assert data in query_pedido_id
     assert data in query_pedido_status
     assert data in query_pedido
