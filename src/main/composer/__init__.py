@@ -1,0 +1,3 @@
+from .register_pedido_composite import register_pedido_composer
+from .find_pedidos_composite import find_pedidos_composer
+from .update_pedido_composite import update_pedido_composer
