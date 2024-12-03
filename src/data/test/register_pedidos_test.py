@@ -10,7 +10,7 @@ def test_register():
     pedido_repository = PedidoRepositorySpy()
     register_pedido = RegisterPedido(pedido_repository)
     
-    pedido_id = random.randint(0, 9999)
+    pedido_id = str(random.randint(0, 9999))
 
     response = register_pedido.register_pedido(pedido_id=pedido_id)
     
@@ -23,10 +23,10 @@ def test_register_failure():
     pedido_repository = PedidoRepositorySpy()
     register_pedido = RegisterPedido(pedido_repository)
     
-    pedido_id = 'not int'
+    pedido_id = 123
 
     response = register_pedido.register_pedido(pedido_id=pedido_id)
     
     assert pedido_repository.insert_pedido_params == {}
     assert response['Success'] is False
-    assert response['Info'] == 'pedido_id must be a integer'
+    assert response['Info'] == 'pedido_id must be a string'

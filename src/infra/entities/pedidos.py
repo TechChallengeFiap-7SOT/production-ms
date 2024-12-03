@@ -1,7 +1,6 @@
 import enum
 
-from sqlalchemy import Column, String, Integer, Enum
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Enum
 from src.infra.config import Base
 
 
@@ -16,7 +15,7 @@ class Pedidos(Base):
 
     __tablename__ = 'pedidos'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     status = Column(Enum(StatusTypes), nullable=False)
     
     def __rep__(self):

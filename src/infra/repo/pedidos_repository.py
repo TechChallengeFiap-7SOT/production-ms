@@ -7,7 +7,7 @@ from src.infra.entities import Pedidos as PedidosModel
 
 class PedidosRepository(PedidoRepositoryInterface):
     @classmethod
-    def insert_pedido(cls, pedido_id: int, status: int) -> Pedidos:
+    def insert_pedido(cls, pedido_id: str, status: int) -> Pedidos:
         with DBConnectionHandler() as db_connection:
             try:
                 pedido = PedidosModel(id=pedido_id, status=status)
@@ -24,7 +24,7 @@ class PedidosRepository(PedidoRepositoryInterface):
         return None
 
     @classmethod
-    def get_pedidos(cls, pedido_id: int = None, status: str = None) -> List[Pedidos]:
+    def get_pedidos(cls, pedido_id: str = None, status: str = None) -> List[Pedidos]:
         try:
             with DBConnectionHandler() as db_connection:
                 query_data = db_connection.session.query(PedidosModel)

@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os
 
 
 class DBConnectionHandler:
@@ -7,7 +8,8 @@ class DBConnectionHandler:
     
     def __init__(self):
         # Private
-        self.__connection_string = 'sqlite:///storage.db'
+        # self.__connection_string = os.environ['POSTGRES_STRING_CONN']
+        self.__connection_string = "postgresql+psycopg2://postgres:senha123@pedidos.cc1t1ip1k3ol.us-east-1.rds.amazonaws.com:5432/postgres"
         
         # Public
         self.session = None
@@ -23,7 +25,7 @@ class DBConnectionHandler:
             self.session = session_maker(bind=engine)
             return self
         except Exception as err:
-            print(err)
+            raise err
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.session.close()

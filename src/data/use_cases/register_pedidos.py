@@ -8,11 +8,11 @@ class RegisterPedido(RegisterPedidosInterface):
     def __init__(self, pedido_repository: Type[PedidoRepository]):
         self.pedido_repository = pedido_repository
 
-    def register_pedido(self, pedido_id: int) -> Dict[bool, Pedidos]:
-        validate_id = isinstance(pedido_id, int)
+    def register_pedido(self, pedido_id: str) -> Dict[bool, Pedidos]:
+        validate_id = isinstance(pedido_id, str)
         
         if not validate_id:
-            return {'Success': False, 'Info': 'pedido_id must be a integer'}
+            return {'Success': False, 'Info': 'pedido_id must be a string'}
         
         response = self.pedido_repository.insert_pedido(pedido_id, "na_fila")
         
