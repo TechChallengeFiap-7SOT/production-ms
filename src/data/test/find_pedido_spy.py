@@ -10,6 +10,6 @@ class FindPedidoSpy:
         return {
             "Success": True,
             "Data": [
-                { "pedid_id": 123, "status": status }
+                { "pedid_id": '123', "status": status }
             ]
         }

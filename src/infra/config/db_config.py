@@ -8,7 +8,8 @@ class DBConnectionHandler:
     
     def __init__(self):
         # Private
-        self.__connection_string = os.environ['POSTGRES_STRING_CONN']
+        # self.__connection_string = os.environ['POSTGRES_STRING_CONN']
+        self.__connection_string = "postgresql+psycopg2://postgres:senha123@pedidos.cc1t1ip1k3ol.us-east-1.rds.amazonaws.com:5432/postgres"
         
         # Public
         self.session = None

@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM --platform=linux/amd64 python:3.10 AS build
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ EXPOSE 5000
 
 ENV FLASK_APP=run.py
 
-ENV POSTGRES_STRING_CONN="postgresql+psycopg2://postgres:senha-ms@postgres:5432/pedidos?sslmode=disable&connect_timeout=5"
+ENV POSTGRES_STRING_CONN="postgresql+psycopg2://postgres:senha123@pedidos.cc1t1ip1k3ol.us-east-1.rds.amazonaws.com:5432/postgres"
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]

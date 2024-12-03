@@ -11,7 +11,7 @@ def test_update_pedido():
     pedido_repository = PedidoRepositorySpy()
     update_pedido = UpdatePedido(pedido_repository)
 
-    pedido_id = random.randint(0, 9999)
+    pedido_id = str(random.randint(0, 9999))
 
     response = update_pedido.by_id(pedido_id=pedido_id, status='na_fila')
     
@@ -25,7 +25,7 @@ def test_find_pedidos_failure():
     pedido_repository = PedidoRepositorySpy()
     update_pedido = UpdatePedido(pedido_repository)
 
-    pedido_id = random.randint(0, 9999)
+    pedido_id = str(random.randint(0, 9999))
 
     response = update_pedido.by_id(pedido_id=pedido_id, status=['na_fila'])
     

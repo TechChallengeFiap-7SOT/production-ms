@@ -1,4 +1,4 @@
 CREATE TABLE IF NOT EXISTS pedidos (
-    id     integer PRIMARY KEY,
-    status   varchar(40) NOT NULL
+    id       varchar(64) PRIMARY KEY,
+    status   varchar(64) NOT NULL
 );

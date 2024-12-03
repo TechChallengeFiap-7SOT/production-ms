@@ -4,31 +4,29 @@ networks:
   app:
 
 services:
-  postgres:
-    image: postgres
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_DB: "pedidos"
-      POSTGRES_PASSWORD: "senha-ms"
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    networks:
-      - app
+#   postgres:
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: "postgres"
+#       POSTGRES_DB: "pedidos"
+#       POSTGRES_PASSWORD: "senha-ms"
+#     volumes:
+#       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#     ports:
+#       - "5432:5432"
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 5
+#     networks:
+#       - app
 
   pedidos-ms:
-    image: flaskapi:latest
-    environment:
-      POSTGRES_STRING_CONN: "postgresql+psycopg2://postgres:senha-ms@postgres:5432/pedidos?sslmode=disable&connect_timeout=5"
-    depends_on:
-      postgres:
-        condition: service_healthy
+    image: mauriciohm/production-ms:latest
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
     ports:
       - "5000:5000"
     networks:

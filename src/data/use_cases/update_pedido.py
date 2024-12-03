@@ -12,9 +12,9 @@ class UpdatePedido(UpdatePedidosInterface):
     def __init__(self, pedido_repository: Type[PedidoRepository]):
         self.pedido_repository = pedido_repository
         
-    def by_id(self, pedido_id: int, status: str) -> Dict[bool, Pedidos]:
+    def by_id(self, pedido_id: str, status: str) -> Dict[bool, Pedidos]:
         
-        valid_input = isinstance(status, str) and isinstance(pedido_id, int) and status in VALID_STATUS
+        valid_input = isinstance(status, str) and isinstance(pedido_id, str) and status in VALID_STATUS
 
         if not valid_input:
             return {'Success': valid_input, 'Data': None}

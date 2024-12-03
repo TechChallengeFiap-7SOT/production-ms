@@ -4,13 +4,13 @@ from src.domain.models import Pedidos
 
 class PedidoRepositoryInterface(ABC):
     @abstractmethod
-    def insert_pedido(self, id: int, status: int) -> Pedidos:
+    def insert_pedido(self, id: str, status: int) -> Pedidos:
         raise Exception('Method not implemented')
     
     @abstractmethod
-    def get_pedidos(self, pedido_id: int = None, status: str = None) -> List[Pedidos]:
+    def get_pedidos(self, pedido_id: str = None, status: str = None) -> List[Pedidos]:
         raise Exception('Method not implemented')
     
     @abstractmethod
-    def update_pedido(cls, pedido_id: int, status: str) -> Pedidos:
+    def update_pedido(cls, pedido_id: str, status: str) -> Pedidos:
         raise Exception('Method not implemented')
